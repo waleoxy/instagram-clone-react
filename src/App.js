@@ -83,7 +83,7 @@ function App() {
   const signIn = (event) => {
     event.preventDefault();
     auth
-      .signInWithEmailAndPassword(username, password)
+      .signInWithEmailAndPassword(email, password)
       .catch(error => alert(error.message));
     setOpenSignIn(false);
 
@@ -168,7 +168,10 @@ function App() {
       {user ? (
         <Button onClick={() => auth.signOut()}>Logout</Button>
       ) : (
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          <div className="app__Logincontainer" >
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
         )}
 
 
