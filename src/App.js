@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react"
 import './App.css';
 import { auth, db } from "./firebase";
+import ImageUpload from "./ImageUpload";
 import Post from "./Post";
 
 
@@ -41,7 +42,7 @@ function App() {
   const [openSignIn, setOpenSignIn] = useState(false);
 
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
         post: doc.data()
@@ -164,16 +165,16 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="instagram logo"
         />
-      </div>
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-      ) : (
-          <div className="app__Logincontainer" >
-            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          </div>
-        )}
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+            <div className="app__Logincontainer" >
+              <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+              <Button onClick={() => setOpen(true)}>Sign Up</Button>
+            </div>
+          )}
 
+      </div>
 
       <h1>hello this is instagram clone</h1>
       {posts.map(({ id, post }) => (
@@ -185,6 +186,14 @@ function App() {
         />)
 
       )}
+
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
+      ) : (
+          <h3>Sorry you need to login to upload</h3>
+        )}
+
     </div>
   )
 }
