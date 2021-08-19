@@ -20,3 +20,39 @@
  flex-direction: column;
  text-align: center;
 }
+.app__posts{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.app__postsright{
+  margin-left: 25px;
+  max-width: 350px;
+  width: 100%;
+  object-fit: contain;
+}
+.app__postsright__in{
+ display: flex;
+ flex-direction: column;
+}
+.app__postsleft{
+ object-fit: contain;
+ max-width: 380px;
+}
+.post__commentBox{
+  display: flex;
+  margin-top: 10px;
+}
+.post__input{
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+}
+.post__button{
+  flex: 0;
+  border: none;
+  background-color: transparent;
+  color: #6082a3;
+  border-top: 1px solid lightgray;
+}

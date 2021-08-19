@@ -6,6 +6,11 @@ import './App.css';
 import { auth, db } from "./firebase";
 import ImageUpload from "./ImageUpload";
 import Post from "./Post";
+import InstagramFeed from 'react-ig-feed'
+import 'react-ig-feed/dist/index.css'
+import InstagramEmbed from 'react-instagram-embed';
+import InstagramFeeds from "./InstagramFeeds";
+
 
 
 function getModalStyle() {
@@ -175,27 +180,47 @@ function App() {
           )}
 
       </div>
+      <div className="app__posts">
+        <div className="app__postsleft">
+          {posts.map(({ id, post }) => (
+            <Post
+              key={id}
+              postId={id}
+              user={user}
+              caption={post.caption}
+              username={post.username}
+              imageUrl={post.imageUrl}
+            />)
 
-      <h1>hello this is instagram clone</h1>
-      {posts.map(({ id, post }) => (
-        <Post
-          key={id}
-          caption={post.caption}
-          username={post.username}
-          imageUrl={post.imageUrl}
-        />)
+          )}
+        </div>
+        {/*IGQVJXWkV5aUZAmNlpXeHNIUHJINzV3Nl85cTZAMSHhTRjNDZA1NMRHpOREIta2hkMzdSelFscGRsRG9hX2k5dWdkaFpsTEY3U0h6bC1GS2tnM0NoQldFdTZA0cFpiYTNIcnRCVXF5S1RUN2hienJrOWlpWgZDZD*/}
+        <div className="app__postsright">
+          <div className="app__postsright__in">
+            <InstagramFeed
+              token="IGQVJXWkV5aUZAmNlpXeHNIUHJINzV3Nl85cTZAMSHhTRjNDZA1NMRHpOREIta2hkMzdSelFscGRsRG9hX2k5dWdkaFpsTEY3U0h6bC1GS2tnM0NoQldFdTZA0cFpiYTNIcnRCVXF5S1RUN2hienJrOWlpWgZDZD"
+              counter='5'
+            />
+            <InstagramFeeds>
 
-      )}
+            </InstagramFeeds>
+          </div>
+        </div>
+      </div>
 
 
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ) : (
-          <h3>Sorry you need to login to upload</h3>
-        )}
+      {
+        user?.displayName ? (
+          <ImageUpload username={user.displayName} />
+        ) : (
+            <h3>Sorry you need to login to upload</h3>
+          )
+      }
 
-    </div>
+    </div >
   )
+
 }
+
 
 export default App;
