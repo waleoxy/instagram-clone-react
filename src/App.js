@@ -10,6 +10,11 @@ import InstagramFeed from 'react-ig-feed'
 import 'react-ig-feed/dist/index.css'
 import InstagramEmbed from 'react-instagram-embed';
 import InstagramFeeds from "./InstagramFeeds";
+import HomeIcon from '@material-ui/icons/Home';
+import SendIcon from '@material-ui/icons/Send';
+import ExploreIcon from '@material-ui/icons/Explore';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import Avatar from '@material-ui/core/Avatar';
 
 
 
@@ -170,14 +175,21 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="instagram logo"
         />
-        {user ? (
-          <Button onClick={() => auth.signOut()}>Logout</Button>
-        ) : (
-            <div className="app__Logincontainer" >
-              <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-              <Button onClick={() => setOpen(true)}>Sign Up</Button>
-            </div>
-          )}
+        <div className="header__icons__log">
+          <div className="header__icons">
+            <HomeIcon className="icons" /> <SendIcon className="icons" /> <ExploreIcon className="icons" /> <FavoriteBorderOutlinedIcon className="icons" /> <Avatar className="icons" />
+          </div>
+          <div>
+            {user ? (
+              <Button onClick={() => auth.signOut()}>Logout</Button>
+            ) : (
+                <div className="app__Logincontainer" >
+                  <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+                  <Button onClick={() => setOpen(true)}>Sign Up</Button>
+                </div>
+              )}
+          </div>
+        </div>
 
       </div>
       <div className="app__posts">
